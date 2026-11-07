@@ -16,13 +16,12 @@ class Reporte:
     operacion: str
 
 
-def registrar_reporte(
-    ruta_bd: str | Path,
+def _validar_y_limpiar_datos(
     descripcion: str,
     fecha: date,
     operacion: str,
-) -> Reporte:
-    """Registrar y devolver el reporte según el contrato del README."""
+) -> tuple[str, str]:
+    """Validar los tipos y devolver los textos sin espacios exteriores."""
     if not isinstance(descripcion, str):
         raise TypeError("La descripción debe ser texto")
     if not isinstance(operacion, str):
@@ -36,6 +35,17 @@ def registrar_reporte(
         raise ValueError("Falta la descripción")
     if not operacion:
         raise ValueError("Falta la operación afectada")
+    return descripcion, operacion
+
+
+def registrar_reporte(
+    ruta_bd: str | Path,
+    descripcion: str,
+    fecha: date,
+    operacion: str,
+) -> Reporte:
+    """Registrar y devolver el reporte según el contrato del README."""
+    descripcion, operacion = _validar_y_limpiar_datos(descripcion, fecha, operacion)
 
     conexion = sqlite3.connect(ruta_bd)
     try:
