@@ -1,0 +1,153 @@
+FFFFFFFFFFFFFFFFFFFF                                                     [100%]
+================================== FAILURES ===================================
+_____________ test_registra_el_caso_original_y_devuelve_sus_datos _____________
+tests\test_registro.py:25: in test_registra_el_caso_original_y_devuelve_sus_datos
+    reporte = registrar_reporte(
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+____ test_segundo_reporte_recibe_otro_identificador_y_conserva_el_primero _____
+tests\test_registro.py:42: in test_segundo_reporte_recibe_otro_identificador_y_conserva_el_primero
+    primero = registrar_reporte(
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+_________ test_datos_siguen_en_el_archivo_despues_de_cerrar_y_reabrir _________
+tests\test_registro.py:65: in test_datos_siguen_en_el_archivo_despues_de_cerrar_y_reabrir
+    registrar_reporte(ruta_bd, "Error de consulta", date(2026, 11, 7), "consulta")
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+_____________ test_admite_descripcion_y_operacion_de_un_caracter ______________
+tests\test_registro.py:82: in test_admite_descripcion_y_operacion_de_un_caracter
+    reporte = registrar_reporte(ruta_bd, "x", date(2026, 11, 7), "y")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+________ test_limpia_espacios_exteriores_y_conserva_espacios_internos _________
+tests\test_registro.py:95: in test_limpia_espacios_exteriores_y_conserva_espacios_internos
+    reporte = registrar_reporte(
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+_____ test_descripcion_vacia_informa_el_mensaje_y_no_abre_la_base[vacia] ______
+tests\test_registro.py:115: in test_descripcion_vacia_informa_el_mensaje_y_no_abre_la_base
+    registrar_reporte(ruta_bd, descripcion, date(2026, 11, 7), "consulta")
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+____ test_descripcion_vacia_informa_el_mensaje_y_no_abre_la_base[espacios] ____
+tests\test_registro.py:115: in test_descripcion_vacia_informa_el_mensaje_y_no_abre_la_base
+    registrar_reporte(ruta_bd, descripcion, date(2026, 11, 7), "consulta")
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+_____ test_error_de_descripcion_conserva_los_registros_existentes[vacia] ______
+tests\test_registro.py:126: in test_error_de_descripcion_conserva_los_registros_existentes
+    registrar_reporte(ruta_bd, "Reporte anterior", date(2026, 11, 6), "consulta")
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+____ test_error_de_descripcion_conserva_los_registros_existentes[espacios] ____
+tests\test_registro.py:126: in test_error_de_descripcion_conserva_los_registros_existentes
+    registrar_reporte(ruta_bd, "Reporte anterior", date(2026, 11, 6), "consulta")
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+____________ test_fecha_con_tipo_incorrecto_no_crea_la_base[texto] ____________
+tests\test_registro.py:147: in test_fecha_con_tipo_incorrecto_no_crea_la_base
+    registrar_reporte(ruta_bd, "Error", fecha_invalida, "consulta")  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+__________ test_fecha_con_tipo_incorrecto_no_crea_la_base[datetime] ___________
+tests\test_registro.py:147: in test_fecha_con_tipo_incorrecto_no_crea_la_base
+    registrar_reporte(ruta_bd, "Error", fecha_invalida, "consulta")  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+____________ test_fecha_con_tipo_incorrecto_no_crea_la_base[nula] _____________
+tests\test_registro.py:147: in test_fecha_con_tipo_incorrecto_no_crea_la_base
+    registrar_reporte(ruta_bd, "Error", fecha_invalida, "consulta")  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+_________ test_campos_no_textuales_no_crean_la_base[descripcion-nulo] _________
+tests\test_registro.py:163: in test_campos_no_textuales_no_crean_la_base
+    registrar_reporte(ruta_bd, descripcion, date(2026, 11, 7), operacion)  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+________ test_campos_no_textuales_no_crean_la_base[descripcion-numero] ________
+tests\test_registro.py:163: in test_campos_no_textuales_no_crean_la_base
+    registrar_reporte(ruta_bd, descripcion, date(2026, 11, 7), operacion)  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+__________ test_campos_no_textuales_no_crean_la_base[operacion-nulo] __________
+tests\test_registro.py:163: in test_campos_no_textuales_no_crean_la_base
+    registrar_reporte(ruta_bd, descripcion, date(2026, 11, 7), operacion)  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+_________ test_campos_no_textuales_no_crean_la_base[operacion-numero] _________
+tests\test_registro.py:163: in test_campos_no_textuales_no_crean_la_base
+    registrar_reporte(ruta_bd, descripcion, date(2026, 11, 7), operacion)  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+____ test_operacion_vacia_no_inserta_ni_pierde_el_reporte_anterior[vacia] _____
+tests\test_registro.py:174: in test_operacion_vacia_no_inserta_ni_pierde_el_reporte_anterior
+    registrar_reporte(ruta_bd, "Reporte anterior", date(2026, 11, 6), "consulta")
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+___ test_operacion_vacia_no_inserta_ni_pierde_el_reporte_anterior[espacios] ___
+tests\test_registro.py:174: in test_operacion_vacia_no_inserta_ni_pierde_el_reporte_anterior
+    registrar_reporte(ruta_bd, "Reporte anterior", date(2026, 11, 6), "consulta")
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+______ test_apostrofos_y_texto_con_aspecto_de_sql_se_guardan_como_datos _______
+tests\test_registro.py:190: in test_apostrofos_y_texto_con_aspecto_de_sql_se_guardan_como_datos
+    reporte = registrar_reporte(ruta_bd, descripcion, date(2026, 11, 7), "consulta")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+_________ test_carpeta_inexistente_propaga_el_error_de_almacenamiento _________
+tests\test_registro.py:208: in test_carpeta_inexistente_propaga_el_error_de_almacenamiento
+    registrar_reporte(ruta_bd, "Error", date(2026, 11, 7), "consulta")
+reportes\registro.py:25: in registrar_reporte
+    raise NotImplementedError("HU-01 pendiente de implementaci�n")
+E   NotImplementedError: HU-01 pendiente de implementaci�n
+=========================== short test summary info ===========================
+FAILED tests/test_registro.py::test_registra_el_caso_original_y_devuelve_sus_datos
+FAILED tests/test_registro.py::test_segundo_reporte_recibe_otro_identificador_y_conserva_el_primero
+FAILED tests/test_registro.py::test_datos_siguen_en_el_archivo_despues_de_cerrar_y_reabrir
+FAILED tests/test_registro.py::test_admite_descripcion_y_operacion_de_un_caracter
+FAILED tests/test_registro.py::test_limpia_espacios_exteriores_y_conserva_espacios_internos
+FAILED tests/test_registro.py::test_descripcion_vacia_informa_el_mensaje_y_no_abre_la_base[vacia]
+FAILED tests/test_registro.py::test_descripcion_vacia_informa_el_mensaje_y_no_abre_la_base[espacios]
+FAILED tests/test_registro.py::test_error_de_descripcion_conserva_los_registros_existentes[vacia]
+FAILED tests/test_registro.py::test_error_de_descripcion_conserva_los_registros_existentes[espacios]
+FAILED tests/test_registro.py::test_fecha_con_tipo_incorrecto_no_crea_la_base[texto]
+FAILED tests/test_registro.py::test_fecha_con_tipo_incorrecto_no_crea_la_base[datetime]
+FAILED tests/test_registro.py::test_fecha_con_tipo_incorrecto_no_crea_la_base[nula]
+FAILED tests/test_registro.py::test_campos_no_textuales_no_crean_la_base[descripcion-nulo]
+FAILED tests/test_registro.py::test_campos_no_textuales_no_crean_la_base[descripcion-numero]
+FAILED tests/test_registro.py::test_campos_no_textuales_no_crean_la_base[operacion-nulo]
+FAILED tests/test_registro.py::test_campos_no_textuales_no_crean_la_base[operacion-numero]
+FAILED tests/test_registro.py::test_operacion_vacia_no_inserta_ni_pierde_el_reporte_anterior[vacia]
+FAILED tests/test_registro.py::test_operacion_vacia_no_inserta_ni_pierde_el_reporte_anterior[espacios]
+FAILED tests/test_registro.py::test_apostrofos_y_texto_con_aspecto_de_sql_se_guardan_como_datos
+FAILED tests/test_registro.py::test_carpeta_inexistente_propaga_el_error_de_almacenamiento
+20 failed in 0.19s
