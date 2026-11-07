@@ -1,0 +1,13 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+________ test_alternativa_en_memoria_conserva_reportes_entre_procesos _________
+work\s5_alternativa_memoria_test.py:19: in test_alternativa_en_memoria_conserva_reportes_entre_procesos
+    assert json.loads(segunda.stdout) == json.loads(primera.stdout), (
+E   AssertionError: La alternativa en memoria pierde el reporte al comenzar otra ejecuci�n
+E   assert [] == [{'identifica...onfirmaci�n'}]
+E     
+E     Right contains one more item: {'identificador': 'REP-001', 'descripcion': 'No se confirma el pedido', 'fecha': '2026-10-24', 'operacion': 'confirmaci�n'}
+E     Use -v to get more diff
+=========================== short test summary info ===========================
+FAILED work/s5_alternativa_memoria_test.py::test_alternativa_en_memoria_conserva_reportes_entre_procesos
+1 failed in 0.22s

@@ -53,7 +53,7 @@ def registrar_reporte(
 
 **Errores.** Descripción vacía o solo con espacios: `ValueError("Falta la descripción")`. Operación vacía: `ValueError("Falta la operación afectada")`. Descripción u operación que no sean texto, o fecha con tipo incorrecto: `TypeError`. La validación ocurre antes de abrir la base y no crea registros. Los errores de almacenamiento se propagan como excepciones de `sqlite3`; no se informa éxito cuando una escritura falla.
 
-**Supuestos y límites.** Un archivo local, uso secuencial y esquema administrado por esta función. No se añaden límites arbitrarios de longitud, cuentas, red, interfaz gráfica, clasificación, búsqueda ni modificaciones de reportes. Fechas válidas de un carácter de descripción, años bisiestos y caracteres con apóstrofos deben funcionar. La fecha la proporciona quien llama. Estas son decisiones de diseño del incremento, pendientes de validación de negocio, no nuevas frases de un cliente.
+**Supuestos y límites.** Un archivo local, uso secuencial y esquema administrado por esta función. No se añaden límites arbitrarios de longitud, cuentas, red, interfaz gráfica, clasificación, búsqueda ni modificaciones de reportes. Se admiten descripciones de un carácter, fechas bisiestas y texto con apóstrofos. La fecha la proporciona quien llama. Estas son decisiones de diseño del incremento, pendientes de validación de negocio, no nuevas frases de un cliente.
 
 ### Ejemplos de entrada y salida
 
@@ -89,6 +89,38 @@ README.md            Historia, contrato y ejecución
 bitacora_ia.md       Sugerencias, decisiones, verificación y reflexión
 ```
 
-## Estado de esta revisión
+## Demostración breve
 
-Contrato y pruebas en preparación. La implementación se construirá después de comprobar y guardar el estado rojo.
+```powershell
+.venv\Scripts\python.exe demo.py
+```
+
+Guarda un ejemplo válido y muestra el mensaje al intentar guardar otro con la descripción vacía. Crea `reportes_demo.sqlite3`, un archivo local excluido de Git. Si se repite la demostración, conserva los datos anteriores y utiliza un identificador nuevo. También admite `--bd ruta/al/archivo.sqlite3` si la carpeta existe.
+
+## Resultado y evidencia
+
+Verificado el 7 de noviembre de 2026 con Python 3.12.14, SQLite y pytest 9.2.0 en Windows. Hay 12 funciones de prueba que generan **20 casos**: 3 normales, 3 de límite y 14 de error. El comportamiento de años bisiestos se comprueba junto con la limpieza de espacios.
+
+| Etapa | Commit | Ejecución real |
+|---|---|---|
+| Contrato y pruebas antes de implementar | `587800f` | 20 fallos esperados por `NotImplementedError`; [salida roja](evidencias/01_pruebas_rojo.txt). |
+| Implementación | `8dc816a` | 20 pruebas pasan; [salida verde](evidencias/03_pruebas_verde.txt). |
+| Refactor de la validación | `49e4b51` | Las mismas 20 pruebas pasan; [salida posterior](evidencias/04_pruebas_refactor.txt). |
+
+No se cambiaron las pruebas entre esas etapas. Su identificador de contenido Git es el mismo: `f178981bbb4a4ab0622245519007a1f064850100`.
+
+La [bitácora](bitacora_ia.md) contiene cinco entradas con propuestas aceptadas, ajustadas y rechazadas. El [análisis de la alternativa en memoria](evidencias/alternativa_memoria.md) incluye la prueba deliberada que detectó pérdida de datos. Esa comparación no se incluye en las pruebas del producto, ya que el código rechazado no pertenece a la implementación final.
+
+La [guía del código](docs/explicacion_codigo.md) explica el modelo, la validación, las transacciones y el refactor. La [revisión de entrega](docs/revision_entrega.md) relaciona los criterios de la tarea con sus evidencias. No se afirma haber validado nuevos requisitos con un cliente ni haber desarrollado las otras historias.
+
+## Entrega y revisión del historial
+
+La carpeta del proyecto se entrega en un ZIP con `.git` incluido, opción admitida por la guía cuando no se usa un repositorio en línea. Extrae la carpeta completa antes de abrirla en el editor; algunas aplicaciones ocultan `.git` al mostrar archivos.
+
+```powershell
+git log --oneline --reverse
+git diff 587800f 49e4b51 -- tests/test_registro.py
+git show 587800f:reportes/registro.py
+```
+
+El segundo comando no debe mostrar cambios: confirma que no se alteraron las pruebas para llegar al verde. El tercero muestra el contrato ejecutable todavía sin implementar. Para revisar las etapas sin cambiar la versión final, pueden crearse carpetas independientes con `git worktree add ../revision-rojo 587800f` y `git worktree add ../revision-verde 8dc816a`, y ejecutar allí las pruebas.

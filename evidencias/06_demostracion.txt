@@ -1,0 +1,10 @@
+Demostración y lectura desde un proceso independiente, 2026-11-07
+
+Guardado REP-001
+Descripción: No se confirma el pedido
+Fecha: 2026-10-24 | Operación: confirmación
+Registro vacío rechazado: Falta la descripción
+Base local: C:\Users\Pedro\AppData\Local\Temp\s5_demo_niscvkqb\reportes.sqlite3
+
+Lectura posterior: [["No se confirma el pedido", "2026-10-24", "confirmación"]]
+Resultado: un registro conservado; la descripción vacía no agregó otro.

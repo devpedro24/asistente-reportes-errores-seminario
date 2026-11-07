@@ -1,0 +1,14 @@
+Revisión automática del historial, 2026-11-07
+
+587800f test: fija contrato de HU-01 y 20 casos en rojo
+8dc816a feat: registra y conserva reportes HU-01 con 20 pruebas en verde
+49e4b51 refactor: separa validación de datos sin cambiar las 20 pruebas
+
+Contenido del archivo de pruebas en cada etapa:
+587800f: f178981bbb4a4ab0622245519007a1f064850100
+8dc816a: f178981bbb4a4ab0622245519007a1f064850100
+49e4b51: f178981bbb4a4ab0622245519007a1f064850100
+
+Resultado: idéntico en rojo, verde y refactor.
+Primer commit: firma y dataclass con NotImplementedError, antes de implementar.
+git diff 587800f 49e4b51 -- tests/test_registro.py: sin diferencias.
