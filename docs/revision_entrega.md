@@ -12,7 +12,7 @@ Revisión del 7 de noviembre de 2026. Esta tabla localiza evidencias de los siet
 | Bitácora | Cinco entradas, 3 aceptadas, 1 ajustada y 1 rechazada; razones, respuestas, verificación y reflexión de siete líneas. | Referencias a salidas reales y commits. |
 | Uso responsable | `.gitignore`, SQL parametrizado, código sin credenciales; guía para explicar los bloques. | Pruebas intactas después del rojo. La explicación personal del estudiante se prepara con la guía y no se declara como una evaluación ya realizada. |
 
-La entrega alternativa es un ZIP con la carpeta del proyecto y su `.git`, tal como admite la página 2 de la tarea. No se necesita crear un enlace público para esta modalidad.
+La entrega se publica en https://github.com/devpedro24/asistente-reportes-errores-seminario y se envía su URL en Q10. El repositorio es público para permitir la revisión del docente mediante el enlace. El ZIP con `.git` se conserva como respaldo de la entrega inicial, modalidad también admitida por la página 2 de la tarea.
 
 ## Avance del proyecto
 

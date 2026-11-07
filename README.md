@@ -3,6 +3,8 @@
 Primera funcionalidad del proyecto final del seminario de IA aplicada al ciclo de vida del software.
 Estudiante: Pedro José Ortiz Méndez. Entrega: Semana 5, 7 de noviembre de 2026.
 
+Repositorio: https://github.com/devpedro24/asistente-reportes-errores-seminario
+
 Este incremento registra y conserva un reporte de error en una base SQLite local. Es una pieza pequeña del proyecto: todavía no clasifica severidad ni conecta con servicios de IA. La IA se utiliza como asistente durante el desarrollo.
 
 ## Funcionalidad de la semana 5
@@ -115,7 +117,16 @@ La [guía del código](docs/explicacion_codigo.md) explica el modelo, la validac
 
 ## Entrega y revisión del historial
 
-La carpeta del proyecto se entrega en un ZIP con `.git` incluido, opción admitida por la guía cuando no se usa un repositorio en línea. Extrae la carpeta completa antes de abrirla en el editor; algunas aplicaciones ocultan `.git` al mostrar archivos.
+La entrega se realiza mediante el enlace a este repositorio de GitHub. Incluye el código, las pruebas, el contrato, la bitácora y el historial de commits. Para Q10, pega la URL del repositorio: https://github.com/devpedro24/asistente-reportes-errores-seminario. El ZIP con `.git` queda como respaldo de la entrega inicial.
+
+Para obtener una copia con el historial completo:
+
+```powershell
+git clone https://github.com/devpedro24/asistente-reportes-errores-seminario.git
+cd asistente-reportes-errores-seminario
+```
+
+Después instala las dependencias y ejecuta las pruebas como se indica arriba. La rama principal es `main`.
 
 ```powershell
 git log --oneline --reverse
