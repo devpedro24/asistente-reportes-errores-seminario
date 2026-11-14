@@ -4,6 +4,8 @@ __pycache__/
 *.py[cod]
 .env
 .env.*
+!.env.example
+.ruff_cache/
 *.db
 *.sqlite
 *.sqlite3
