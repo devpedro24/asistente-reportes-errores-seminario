@@ -17,3 +17,7 @@ La entrega se publica en https://github.com/devpedro24/asistente-reportes-errore
 ## Avance del proyecto
 
 HU-01 pasa de especificación a implementación verificada. El siguiente incremento es HU-05: sugerir severidad con reglas confirmadas. Siguen fuera de este incremento la clasificación, la integración con un modelo externo, cuentas de usuarios y el despliegue.
+
+## Continuidad en Semana 6
+
+La revisión del 14/11/2026 agrega validación de almacenamiento persistente, cinco pruebas, Ruff, auditoría de dependencias y docstrings completos. Las veinte pruebas anteriores no cambiaron. El estado actual está en [revision_seguridad.md](../revision_seguridad.md), el README y las entradas nuevas de la bitácora; esta tabla conserva la revisión histórica de Semana 5.

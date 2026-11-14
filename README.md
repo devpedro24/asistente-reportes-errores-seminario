@@ -1,19 +1,18 @@
 # Asistente para priorizar reportes de errores
 
-Primera funcionalidad del proyecto final del seminario de IA aplicada al ciclo de vida del software.
-Estudiante: Pedro José Ortiz Méndez. Entrega: Semana 5, 7 de noviembre de 2026.
-
 Repositorio: https://github.com/devpedro24/asistente-reportes-errores-seminario
 
-Este incremento registra y conserva un reporte de error en una base SQLite local. Es una pieza pequeña del proyecto: todavía no clasifica severidad ni conecta con servicios de IA. La IA se utiliza como asistente durante el desarrollo.
+**Semana 6:** incremento revisado con 25 pruebas, linter de seguridad, auditoría de dependencias, informe y bitácora. El historial conserva Semana 5 y añade las correcciones organizadas de esta revisión.
 
-## Funcionalidad de la semana 5
+## 1. Qué es
 
-### Historia elegida de la Semana 3
+Proyecto pequeño del Seminario de Inteligencia Artificial Aplicada al Ciclo de Vida del Software. El primer incremento registra y conserva reportes de errores en SQLite local. En la Semana 6 se revisó su calidad y seguridad; todavía no clasifica severidad ni conecta con servicios de IA. La IA se utilizó como asistente de desarrollo y revisión.
 
-**HU-01, prioridad Must.** Como persona que reporta un error, quiero registrar su descripción, fecha y operación afectada para conservar la información del incidente. Necesidad de origen: N-01.
+### Funcionalidad de la semana 5 y cierre de la semana 6
 
-**Criterios de aceptación originales**
+**HU-01, prioridad Must.** Como persona que reporta un error, quiero registrar su descripción, fecha y operación afectada para conservar la información del incidente. Necesidad de origen: N-01, documento de requisitos de Semana 3.
+
+Los dos criterios originales se conservan:
 
 ```gherkin
 Escenario: Guardar el reporte
@@ -29,9 +28,7 @@ Escenario: Descripción vacía
   Y no se crea un registro
 ```
 
-Fuente: documento de requisitos de Semana 3, sección 4, HU-01. Los criterios se conservan; las decisiones adicionales de este incremento se distinguen en el contrato y en [ADR-001](docs/ADR-001-registro-local.md).
-
-### Contrato de la función
+### Contrato
 
 ```python
 def registrar_reporte(
@@ -42,96 +39,130 @@ def registrar_reporte(
 ) -> Reporte:
 ```
 
-`Reporte` contiene `identificador: str`, `descripcion: str`, `fecha: date` y `operacion: str`.
+`Reporte` contiene identificador, descripción, fecha de tipo `date` y operación. La función devuelve el reporte después de confirmar la escritura y cerrar la conexión. Cada llamada válida agrega un registro, incluso si sus datos coinciden con otro; conserva los anteriores entre ejecuciones.
 
 | Entrada | Regla |
 |---|---|
-| `ruta_bd` | Ruta de un archivo SQLite. Su carpeta debe existir y permitir escritura. La función crea la tabla si hace falta. |
-| `descripcion` | Texto. Se eliminan espacios al comienzo y al final; el contenido interno se conserva. Después de limpiar no puede quedar vacío. |
-| `fecha` | Objeto `datetime.date`. No se aceptan cadenas ni `datetime.datetime`. No se agrega una regla sobre fechas futuras. |
-| `operacion` | Texto no vacío después de limpiar espacios exteriores. Se guarda el nombre que reciba; no hay catálogo cerrado. |
+| `ruta_bd` | Ruta de un archivo SQLite cuya carpeta ya existe y permite escritura. La tabla se crea si falta. Desde Semana 6 se rechazan `""` y `":memory:"` porque no conservan los reportes al cerrar. |
+| `descripcion` | Texto no vacío después de quitar espacios exteriores; conserva los espacios internos. |
+| `fecha` | Objeto `datetime.date` exacto; no se aceptan cadenas ni `datetime.datetime`. |
+| `operacion` | Texto no vacío después de quitar espacios exteriores, sin catálogo cerrado. |
 
-**Salida y efectos.** Devuelve el reporte ya guardado. El primer identificador es `REP-001`; los siguientes usan el número persistido por SQLite, con al menos tres dígitos. Los registros anteriores se conservan al cerrar y volver a abrir el archivo. Cada llamada válida agrega un registro, incluso si sus datos coinciden con otro. No cambia los argumentos recibidos.
+El primer identificador es `REP-001`; SQLite administra la secuencia y se muestran al menos tres dígitos. No se añaden límites arbitrarios de longitud ni restricciones de fechas futuras. Se aceptan un carácter, años bisiestos y apóstrofos. El uso es local y secuencial, con el esquema administrado por esta función; no incluye cuentas, red, búsqueda ni modificación de reportes.
 
-**Errores.** Descripción vacía o solo con espacios: `ValueError("Falta la descripción")`. Operación vacía: `ValueError("Falta la operación afectada")`. Descripción u operación que no sean texto, o fecha con tipo incorrecto: `TypeError`. La validación ocurre antes de abrir la base y no crea registros. Los errores de almacenamiento se propagan como excepciones de `sqlite3`; no se informa éxito cuando una escritura falla.
+Errores: `ValueError("Falta la descripción")`, `ValueError("Falta la operación afectada")` o, desde Semana 6, `ValueError("La base debe ser un archivo persistente")`. Los tipos incorrectos generan `TypeError`. SQLite puede rechazar rutas inválidas o propagar errores de apertura/escritura; no se informa éxito si falla la persistencia. Los datos se validan antes de abrir la base y los argumentos no se modifican.
 
-**Supuestos y límites.** Un archivo local, uso secuencial y esquema administrado por esta función. No se añaden límites arbitrarios de longitud, cuentas, red, interfaz gráfica, clasificación, búsqueda ni modificaciones de reportes. Se admiten descripciones de un carácter, fechas bisiestas y texto con apóstrofos. La fecha la proporciona quien llama. Estas son decisiones de diseño del incremento, pendientes de validación de negocio, no nuevas frases de un cliente.
+Las decisiones técnicas adicionales se identifican en [ADR-001](docs/ADR-001-registro-local.md); no se atribuyen a una nueva entrevista con un cliente. La validación de rutas temporales protege el contrato existente de conservación.
 
-### Ejemplos de entrada y salida
+### Ejemplos
 
-Cada ejemplo parte de una base nueva, salvo donde se indica.
+Cada ejemplo parte de una base nueva, salvo el segundo.
 
-| Descripción | Fecha | Operación | Resultado esperado |
+| Descripción | Fecha | Operación | Salida |
 |---|---|---|---|
 | `No se confirma el pedido` | `date(2026, 10, 24)` | `confirmación` | `Reporte("REP-001", "No se confirma el pedido", date(2026, 10, 24), "confirmación")` |
-| `Falla al abrir pedidos` | `date(2026, 11, 7)` | `consulta` | Después del primer ejemplo: `REP-002`, con los datos recibidos, sin perder REP-001. |
+| `Falla al abrir pedidos` | `date(2026, 11, 7)` | `consulta` | Tras el anterior: `REP-002`, con los datos recibidos y sin perder REP-001. |
 | ` x ` | `date(2024, 2, 29)` | ` vista ` | `Reporte("REP-001", "x", date(2024, 2, 29), "vista")` |
-| `   ` | `date(2026, 11, 7)` | `confirmación` | `ValueError: Falta la descripción`; cero registros nuevos. |
+| `   ` | `date(2026, 11, 7)` | `confirmación` | `ValueError: Falta la descripción`; ningún registro nuevo. |
 
-## Ejecutar las pruebas
+## 2. Requisitos
 
-Requiere Python 3.11 o posterior. La implementación utiliza únicamente la librería estándar; `pytest` es una dependencia de desarrollo.
+Python 3.11 o posterior y Git para clonar. La aplicación usa solo la librería estándar (`sqlite3`, `datetime`, `dataclasses`, `pathlib` y `argparse`). No requiere servidor, credenciales ni servicios de pago.
 
-```powershell
-python -m venv .venv
-.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-.venv\Scripts\python.exe -m pytest
-```
+`requirements-dev.txt` fija las herramientas de desarrollo: pytest 9.2.0, Ruff 0.17.5, pip-audit 2.10.1 y sus dependencias transitivas, incluido pip 26.3. Pytest comprueba comportamiento; Ruff revisa estilo, errores y seguridad; pip-audit consulta vulnerabilidades conocidas. Las dependencias transitivas sirven a estas herramientas, no se importan desde el producto. Los resultados se verificaron el 14/11/2026 y deben renovarse al actualizar versiones.
 
-Si el entorno ya tiene las dependencias instaladas, el único comando de pruebas es `python -m pytest`. Las pruebas usan archivos temporales y no alteran los reportes de la demostración.
+`.env.example` documenta que este incremento no consume variables de entorno. No contiene claves y la aplicación no lo carga. `.env`, las bases de datos y los entornos locales están excluidos de Git.
 
-## Estructura
+## 3. Instalación
 
-```text
-reportes/             Modelo y función principal
-tests/               Pruebas automatizadas
-docs/                Decisión de diseño y explicación del código
-evidencias/          Salidas reales de las pruebas y revisión del historial
-README.md            Historia, contrato y ejecución
-bitacora_ia.md       Sugerencias, decisiones, verificación y reflexión
-```
-
-## Demostración breve
-
-```powershell
-.venv\Scripts\python.exe demo.py
-```
-
-Guarda un ejemplo válido y muestra el mensaje al intentar guardar otro con la descripción vacía. Crea `reportes_demo.sqlite3`, un archivo local excluido de Git. Si se repite la demostración, conserva los datos anteriores y utiliza un identificador nuevo. También admite `--bd ruta/al/archivo.sqlite3` si la carpeta existe.
-
-## Resultado y evidencia
-
-Verificado el 7 de noviembre de 2026 con Python 3.12.14, SQLite y pytest 9.2.0 en Windows. Hay 12 funciones de prueba que generan **20 casos**: 3 normales, 3 de límite y 14 de error. El comportamiento de años bisiestos se comprueba junto con la limpieza de espacios.
-
-| Etapa | Commit | Ejecución real |
-|---|---|---|
-| Contrato y pruebas antes de implementar | `587800f` | 20 fallos esperados por `NotImplementedError`; [salida roja](evidencias/01_pruebas_rojo.txt). |
-| Implementación | `8dc816a` | 20 pruebas pasan; [salida verde](evidencias/03_pruebas_verde.txt). |
-| Refactor de la validación | `49e4b51` | Las mismas 20 pruebas pasan; [salida posterior](evidencias/04_pruebas_refactor.txt). |
-
-No se cambiaron las pruebas entre esas etapas. Su identificador de contenido Git es el mismo: `f178981bbb4a4ab0622245519007a1f064850100`.
-
-La [bitácora](bitacora_ia.md) contiene cinco entradas con propuestas aceptadas, ajustadas y rechazadas. El [análisis de la alternativa en memoria](evidencias/alternativa_memoria.md) incluye la prueba deliberada que detectó pérdida de datos. Esa comparación no se incluye en las pruebas del producto, ya que el código rechazado no pertenece a la implementación final.
-
-La [guía del código](docs/explicacion_codigo.md) explica el modelo, la validación, las transacciones y el refactor. La [revisión de entrega](docs/revision_entrega.md) relaciona los criterios de la tarea con sus evidencias. No se afirma haber validado nuevos requisitos con un cliente ni haber desarrollado las otras historias.
-
-## Entrega y revisión del historial
-
-La entrega se realiza mediante el enlace a este repositorio de GitHub. Incluye el código, las pruebas, el contrato, la bitácora y el historial de commits. Para Q10, pega la URL del repositorio: https://github.com/devpedro24/asistente-reportes-errores-seminario. El ZIP con `.git` queda como respaldo de la entrega inicial.
-
-Para obtener una copia con el historial completo:
+En PowerShell, desde la carpeta donde quieras guardar el proyecto:
 
 ```powershell
 git clone https://github.com/devpedro24/asistente-reportes-errores-seminario.git
 cd asistente-reportes-errores-seminario
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 ```
 
-Después instala las dependencias y ejecuta las pruebas como se indica arriba. La rama principal es `main`.
+Los comandos usan el ejecutable del entorno y no necesitan activar scripts de PowerShell. El entorno `.venv` se crea en cada equipo; no se copia desde Git. Si una actualización o desinstalación elimina el Python al que apuntaba un entorno local, vuelve a crearlo con el Python instalado.
+
+La instalación y ejecución se comprobaron primero en una copia local limpia; su registro está en `evidencias/semana6/instalacion_limpia_local.txt`. El cierre de publicación añade una comprobación desde un clon limpio de GitHub en `evidencias/semana6/21_validacion_github.txt`.
+
+## 4. Ejecución
 
 ```powershell
-git log --oneline --reverse
-git diff 587800f 49e4b51 -- tests/test_registro.py
-git show 587800f:reportes/registro.py
+.\.venv\Scripts\python.exe demo.py
 ```
 
-El segundo comando no debe mostrar cambios: confirma que no se alteraron las pruebas para llegar al verde. El tercero muestra el contrato ejecutable todavía sin implementar. Para revisar las etapas sin cambiar la versión final, pueden crearse carpetas independientes con `git worktree add ../revision-rojo 587800f` y `git worktree add ../revision-verde 8dc816a`, y ejecutar allí las pruebas.
+En una base nueva muestra REP-001, los datos guardados y `Registro vacío rechazado: Falta la descripción`. Crea `reportes_demo.sqlite3`, excluido de Git. Al repetir la demostración conserva los datos anteriores y usa otro identificador.
+
+```powershell
+.\.venv\Scripts\python.exe demo.py --help
+.\.venv\Scripts\python.exe demo.py --bd otra_base.sqlite3
+```
+
+La carpeta de una ruta personalizada debe existir. La biblioteca también se puede llamar con la firma de la sección 1. No hay un servidor web que iniciar.
+
+## 5. Pruebas y revisión
+
+Ejecuta desde la raíz:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest
+.\.venv\Scripts\python.exe -m ruff check .
+.\.venv\Scripts\python.exe -m pip_audit -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m pip check
+```
+
+Resultado al cerrar Semana 6: **25 casos pasan**, Ruff sin avisos y auditoría sin vulnerabilidades conocidas en el conjunto fijado. La consulta no certifica que todo el programa sea seguro ni cubre vulnerabilidades futuras.
+
+Las veinte pruebas de Semana 5 permanecen intactas. Se agregaron tres regresiones de almacenamiento temporal y dos casos de abuso: SQL en la operación y fallo de escritura sin pérdida del registro anterior. Las pruebas usan archivos temporales; no alteran la base de la demostración.
+
+Ruff activa `E,F,B,S` en `pyproject.toml`. Solo se excluye `S101` en `tests/**`: las aserciones son la forma de comprobar resultados en pytest y no validan entradas en producción. Los demás avisos se corrigieron. El [informe de seguridad](revision_seguridad.md) contiene hallazgos, commits, revisión con IA y pendientes; la [guía del código](docs/explicacion_codigo.md) ayuda a preparar la exposición.
+
+### Historial de pruebas primero
+
+| Etapa de Semana 5 | Commit | Evidencia |
+|---|---|---|
+| Contrato y pruebas antes del código | `587800f` | 20 fallos esperados, `evidencias/01_pruebas_rojo.txt`. |
+| Implementación | `8dc816a` | 20 pasan, `evidencias/03_pruebas_verde.txt`. |
+| Refactor de validación | `49e4b51` | Las mismas 20 pasan, `evidencias/04_pruebas_refactor.txt`. |
+
+```powershell
+git log --oneline --graph --all
+git diff 587800f HEAD -- tests/test_registro.py
+```
+
+El segundo comando no muestra cambios. Para la corrección de Semana 6 se conservó también el resultado previo de las nuevas regresiones: tres fallos y 22 casos en verde, antes del arreglo.
+
+## 6. Estructura
+
+```text
+reportes/                 Modelo, validación y almacenamiento de HU-01
+tests/test_registro.py    Veinte casos originales de Semana 5
+tests/test_seguridad.py   Cinco casos nuevos de Semana 6
+demo.py                   Demostración local con datos de ejemplo
+pyproject.toml            Ruff con reglas E, F, B y S
+requirements-dev.txt      Herramientas y versiones transitivas fijadas
+.env.example              Ausencia de configuración secreta en este incremento
+revision_seguridad.md     Informe breve de Semana 6
+bitacora_ia.md            Registro de ambas semanas
+docs/                     Decisiones, explicación y revisión de entrega
+evidencias/semana6/       Resultados reales de herramientas y revisión
+```
+
+## 7. Uso de IA
+
+Se utilizó Codex en modo agente para proponer pruebas, implementar HU-01 y revisar el código. La [bitácora](bitacora_ia.md) conserva las cinco entradas de Semana 5 y agrega las de Semana 6 con decisiones, razones y verificación. La [revisión de IA](evidencias/semana6/revision_ia.md) distingue hallazgos confirmados de sospechas y puntos no aplicables.
+
+Las correcciones de agentes auxiliares se hicieron en ramas propias. Se leyó cada diff y se ejecutaron pruebas y Ruff antes de integrar. El informe relaciona cada corrección con su commit verificable; no se reescribió el historial de Semana 5 ni se modificaron sus pruebas para que pasaran.
+
+Contraseñas y control por roles no aplican al alcance local sin usuarios. El acceso al archivo depende de los permisos del sistema operativo; el programa no se presenta como un servicio multiusuario. La revisión de código e historial no encontró claves expuestas. No se afirma una validación nueva con cliente ni una evaluación ya realizada de la explicación personal del estudiante.
+
+## 8. Autor y licencia
+
+Autor: **Pedro José Ortiz Méndez**. Seminario de Inteligencia Artificial Aplicada al Ciclo de Vida del Software, 2026.
+
+Licencia: todos los derechos reservados; no se ha añadido una licencia de código abierto. La publicación permite la revisión académica del repositorio.
+
+Entrega de Semana 6: pegar en Q10 **https://github.com/devpedro24/asistente-reportes-errores-seminario**. El repositorio público incluye código, pruebas, README, `revision_seguridad.md`, bitácora y el historial de commits. La rama del agente y su integración permiten revisar el trabajo supervisado. El primer incremento de HU-01 queda revisado; HU-05 sigue como trabajo posterior sujeto a confirmar sus reglas.

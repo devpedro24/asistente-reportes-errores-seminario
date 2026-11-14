@@ -22,6 +22,10 @@ El bloque `with conexion` confirma si termina correctamente y revierte una escri
 
 La primera versión tenía la validación dentro de la función principal. El refactor extrae esa responsabilidad a un helper privado, con la misma secuencia de comprobaciones y mensajes. No cambia la firma ni las reglas. El archivo de pruebas tiene el mismo contenido en rojo, verde y después del refactor; las 20 pruebas pasan en las dos últimas etapas.
 
+En Semana 6 se separó además la persistencia en `_guardar_en_sqlite`: abre, inserta con parámetros, confirma, cierra y devuelve la clave numérica. `registrar_reporte` ahora valida los datos y la ruta, llama al helper y construye el resultado confirmado. La ruta vacía y `:memory:` se rechazan porque SQLite elimina esos almacenes al cerrar; se añadieron tres regresiones antes de corregir el caso. Las veinte pruebas originales y las cinco nuevas pasan sin cambiar las originales.
+
+El refactor se realizó en una rama propia del agente; el diff, los docstrings y los resultados se revisaron antes de integrar. La evidencia de Semana 6 identifica ambas ramas, los commits y los comandos ejecutados.
+
 ## Pruebas y datos
 
 Las pruebas crean archivos bajo `tmp_path`, independientes del archivo de la demostración. Comprueban tanto el objeto devuelto como el contenido almacenado mediante una conexión nueva. Por eso pueden detectar una solución que devuelve datos correctos, pero no los conserva.
