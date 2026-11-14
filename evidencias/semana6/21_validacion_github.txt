@@ -204,9 +204,9 @@ Código: 0
 * cdbd376 docs: cierra informe de seguridad y trazabilidad de Semana 6
 * 3de559a docs: completa README y guía del incremento revisado de Semana 6
 *   914fee7 merge: integra el refactor del agente tras revisar diff y pruebas
-|\  
+|\
 | * 99bc731 refactor: separa persistencia y documenta el contrato de HU-01
-|/  
+|/
 * 5a192c8 build: configura Ruff y fija las herramientas de seguridad auditadas
 * 100f863 fix: rechaza almacenamiento temporal y agrega pruebas de abuso
 * 7048e43 fix: versiona la plantilla de entorno sin exponer secretos
@@ -221,3 +221,5 @@ Acceso público sin autenticación: confirmado.
 Rama principal: main. Commit validado: cdbd376b86c4c8a8bf404da40ad721ee9d768745
 Resultado: 25 pruebas aprobadas, Ruff limpio, auditoría sin avisos conocidos y pip check correcto.
 El commit siguiente añade solamente esta evidencia de cierre; no modifica el código probado.
+
+Formato: se quitaron espacios finales del grafo de Git; comandos, resultados y códigos se conservan.
