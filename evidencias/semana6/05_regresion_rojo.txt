@@ -1,0 +1,22 @@
+....................FFF..                                                [100%]
+================================== FAILURES ===================================
+________ test_rechaza_almacenamiento_temporal_antes_de_abrir_sqlite[] _________
+tests\test_seguridad.py:26: in test_rechaza_almacenamiento_temporal_antes_de_abrir_sqlite
+    with pytest.raises(ValueError, match="^La base debe ser un archivo persistente$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE ValueError
+____ test_rechaza_almacenamiento_temporal_antes_de_abrir_sqlite[:memory:] _____
+tests\test_seguridad.py:26: in test_rechaza_almacenamiento_temporal_antes_de_abrir_sqlite
+    with pytest.raises(ValueError, match="^La base debe ser un archivo persistente$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE ValueError
+______ test_rechaza_almacenamiento_temporal_antes_de_abrir_sqlite[ruta2] ______
+tests\test_seguridad.py:26: in test_rechaza_almacenamiento_temporal_antes_de_abrir_sqlite
+    with pytest.raises(ValueError, match="^La base debe ser un archivo persistente$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_seguridad.py::test_rechaza_almacenamiento_temporal_antes_de_abrir_sqlite[]
+FAILED tests/test_seguridad.py::test_rechaza_almacenamiento_temporal_antes_de_abrir_sqlite[:memory:]
+FAILED tests/test_seguridad.py::test_rechaza_almacenamiento_temporal_antes_de_abrir_sqlite[ruta2]
+3 failed, 22 passed in 0.22s

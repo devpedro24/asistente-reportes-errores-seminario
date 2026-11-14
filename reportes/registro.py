@@ -46,6 +46,8 @@ def registrar_reporte(
 ) -> Reporte:
     """Registrar y devolver el reporte según el contrato del README."""
     descripcion, operacion = _validar_y_limpiar_datos(descripcion, fecha, operacion)
+    if str(ruta_bd) in ("", ":memory:"):
+        raise ValueError("La base debe ser un archivo persistente")
 
     conexion = sqlite3.connect(ruta_bd)
     try:
