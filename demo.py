@@ -8,8 +8,23 @@ from reportes import registrar_reporte
 
 
 def main() -> None:
-    """Guardar un ejemplo y mostrar el rechazo de una descripción vacía."""
-    argumentos = argparse.ArgumentParser(description="Demostración del registro de reportes")
+    """Ejecutar una demostración de registro y mostrar sus resultados.
+
+    Lee --bd desde los argumentos de consola; por defecto utiliza el archivo
+    reportes_demo.sqlite3 en la carpeta actual. Guarda un reporte de ejemplo y
+    muestra el ValueError esperado al intentar otro con la descripción vacía.
+
+    Returns:
+        None. Imprime los datos guardados, el rechazo y la ruta de la base.
+
+    Raises:
+        ValueError: Si la ruta del primer registro indica una base temporal.
+        sqlite3.Error: Si no puede abrir o escribir el archivo SQLite.
+        SystemExit: Si argparse muestra la ayuda o rechaza los argumentos.
+    """
+    argumentos = argparse.ArgumentParser(
+        description="Demostración del registro de reportes"
+    )
     argumentos.add_argument("--bd", type=Path, default=Path("reportes_demo.sqlite3"))
     ruta_bd = argumentos.parse_args().bd
     reporte = registrar_reporte(
