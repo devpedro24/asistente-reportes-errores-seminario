@@ -1,0 +1,19 @@
+Revisión previa a integración autorizada, 2026-11-14.
+Rama: agente/semana6-codigo-revisado
+Base: 5a192c8
+Commit del agente: 99bc7319c83c2d68e55d82cf50ca72be60051bf9
+Se leyó el diff completo. Solo reportes/registro.py y demo.py.
+Ambos blobs coinciden con los archivos que revisó el usuario.
+Se conserva firma pública, mensajes, parámetros SQL, confirmación y cierre; se separa persistencia y se completan docstrings.
+> C:\Users\Pedro\Desktop\UNIVERSIDAD\SEMESTRE 2026 II\SEMINARIO\asistente-reportes-errores-seminario\.venv\Scripts\python.exe -m pytest -q
+.........................                                                [100%]
+25 passed in 0.15s
+
+
+Código: 0
+> C:\Users\Pedro\Desktop\UNIVERSIDAD\SEMESTRE 2026 II\SEMINARIO\asistente-reportes-errores-seminario\.venv\Scripts\python.exe -m ruff check .
+All checks passed!
+
+
+Código: 0
+Commit de integración: 914fee7400248da9e6844862c61f1816d3f5c8f7

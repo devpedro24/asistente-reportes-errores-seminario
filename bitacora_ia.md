@@ -87,3 +87,59 @@ El código SQLite pasó los casos y permitió revisar cada operación sin depend
 El refactor mejoró la lectura sin cambiar el archivo de pruebas.  
 En el próximo incremento conviene validar las reglas de severidad antes de programar HU-05.  
 La explicación del código y sus límites debe revisarse antes de la exposición del estudiante.
+
+
+## Semana 6 Revisión de código y seguridad
+
+Fecha de las entradas: 2026-11-14. Proyecto y asistente: HU-01, Codex en modo agente. La base revisada fue `65f2ce4`. Se conservan arriba las cinco entradas históricas de Semana 5.
+
+**Secuencia de revisión y autorización:** primero se prepararon correcciones y un historial local provisional. El usuario pidió retirarlo para revisar los archivos; se eliminaron nueve commits nuevos de las ramas activas y sus ramas temporales, conservando todos los cambios sin publicar. Después de revisar el trabajo y la rúbrica, el usuario autorizó explícitamente organizar nuevos commits y subir Semana 6. El historial publicado consolida esos archivos revisados; no se restauraron ni se backdatearon los commits retirados.
+
+### S6-01 Segunda revisión de IA y contraste
+
+- **Prompt o sugerencia, extracto literal:** «Revisa corrección, casos límite, diseño, legibilidad, consultas parametrizadas, secretos, contraseñas, acceso y dependencias. Devuelve tabla ID | archivo:línea baseline | hallazgo | severidad | evidencia | seguro o sospecha | cómo verificar».
+- **Respuesta:** Cinco hallazgos: bases temporales sin persistencia, plantilla ausente, docstrings incompletos, README sin ocho secciones y versiones transitivas sin fijar. La IA no afirmó vulnerabilidades de paquetes sin consultar una auditoría ni inventó roles web.
+- **Decisión y razón:** Aceptada tras comprobar cada hallazgo contra el contrato y la guía. Contraseñas y roles no aplican al ejecutable local sin usuarios.
+- **Verificación:** Reproducción de rutas, lectura de código y títulos, check-ignore, Ruff y pip-audit. Los cinco hallazgos resultaron reales en el alcance descrito; no se fabricó un falso positivo. Tabla y prompt completos en `evidencias/semana6/revision_ia.md`.
+- **Commits relacionados:** `7048e43`, `100f863`, `5a192c8`, `99bc731`, `3de559a`.
+
+### S6-02 Corrección de persistencia y pruebas de abuso
+
+- **Sugerencia:** Rechazar los nombres vacío y :memory: antes de abrir SQLite, para cumplir el contrato de archivo persistente.
+- **Decisión y razón:** Aceptada. SQLite eliminaba esas bases al cerrar mientras la función devolvía éxito. Es un fallo de integridad y contrato, no una inyección remota.
+- **Verificación:** Durante el trabajo local se añadieron tres regresiones: antes del arreglo hubo `3 failed, 22 passed`; después, `25 passed`. Se conservan las salidas reales 05 y 06. Las otras dos pruebas nuevas verifican SQL hostil en operación y escritura fallida sin perder el reporte anterior.
+- **Pruebas anteriores:** El archivo `tests/test_registro.py` mantiene el blob `f178981bbb4a4ab0622245519007a1f064850100`; no se modificó para alcanzar verde.
+- **Commit relacionado:** `100f863`, consolidación de la corrección y sus pruebas ya revisadas.
+
+### S6-03 Herramientas y dependencias auditadas
+
+- **Sugerencia:** Configurar Ruff E,F,B,S, fijar las herramientas y sus transitivas y repetir la auditoría al actualizar.
+- **Decisión y razón:** Aceptada. La aplicación continúa usando solo librería estándar; Ruff y pip-audit son herramientas de desarrollo.
+- **Verificación:** Ruff señaló inicialmente 21 aserciones S101 de pytest y una línea E501. Se justifica S101 únicamente en tests y se dividió la línea. La auditoría del requisito inicial de pytest no presentó avisos; la del entorno detectó seis IDs únicos en pip 25.0.1, reflejados en doce entradas. Tras actualizar a pip 26.3, entorno y 34 paquetes fijados dieron cero avisos conocidos y pip check pasó.
+- **Lo que la IA no encontró:** El problema de pip lo detectó la auditoría independiente. También se reparó un entorno virtual que apuntaba a un Python retirado; se verificó la instalación limpia. Las salidas JSON conservan el resultado antes y después, sin equipararlo con una garantía total de seguridad.
+- **Commit relacionado:** `5a192c8`; la línea de demostración se corrige en `99bc731`.
+
+### S6-04 Trabajo supervisado del agente en una rama propia
+
+- **Trabajo previo:** Las revisiones locales de docstrings y extracción de persistencia se hicieron en ramas temporales; se conservan sus instrucciones y resultados en las evidencias 09 a 16. Esas ramas se retiraron durante la pausa solicitada.
+- **Instrucción de consolidación autorizada, extracto literal:** «Consolida exactamente las dos fuentes ya revisadas [...] NO cambies lógica, docstrings, mensajes ni ninguna otra cosa. Verifica que solo difieran esos dos archivos, que las 25 pruebas pasen [...] Haz un commit descriptivo en TU rama [...] No integres ni publiques».
+- **Rama y respuesta:** `agente/semana6-codigo-revisado`, base `5a192c8`, commit `99bc731`. Solo cambian `reportes/registro.py` y `demo.py`, idénticos a las fuentes revisadas por el usuario.
+- **Decisión y razón:** Aceptada después de leer el diff completo. La función pública conserva la validación y construye Reporte después de confirmar y cerrar; el helper separa almacenamiento. Se mantienen firma, mensajes, SQL parametrizado y pruebas.
+- **Verificación antes de integrar:** Se compararon los blobs y se ejecutaron 25 pruebas y Ruff sobre el worktree del agente: ambos controles pasaron. La evidencia 20 contiene comandos, respuesta y revisión. El agente no integró ni publicó por su cuenta.
+- **Commits relacionados:** `99bc731`, integración supervisada `914fee7`.
+
+### S6-05 README, informe y comprobación de entrega
+
+- **Sugerencia:** Mantener el contrato de HU-01, organizar el README en ocho secciones y comprobar los comandos desde una carpeta limpia.
+- **Decisión y razón:** Aceptada. README y docstrings describen la aplicación local; no se incorporó el código de práctica con fallos sembrados. La licencia se identifica sin conceder una licencia de código abierto que el autor no eligió.
+- **Verificación:** Se comprobaron las ocho secciones y Args/Returns/Raises contra el código. La instalación local limpia ejecutó demo, ayuda, 25 pruebas, Ruff, auditoría y pip check con código 0 (`instalacion_limpia_local.txt`). El cierre de publicación repite la comprobación desde GitHub y añade `21_validacion_github.txt`.
+- **Commits relacionados:** `3de559a` (README y guía); el informe y esta bitácora se consolidan en el commit «docs: cierra informe de seguridad y trazabilidad de Semana 6».
+
+### Reflexión de Semana 6
+
+La revisión encontró un caso que devolvía éxito sin conservar el reporte.
+Las regresiones permitieron corregirlo sin tocar las pruebas anteriores.
+La auditoría de herramientas detectó un riesgo que la lectura de IA no había comprobado.
+Las ramas y los diffs delimitaron qué podía modificar el agente.
+El refactor hizo visible la separación entre validar, persistir y devolver.
+La próxima revisión debe renovar la auditoría y confirmar HU-05 antes de ampliar el alcance.

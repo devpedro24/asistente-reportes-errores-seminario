@@ -1,0 +1,7 @@
+2026-11-14. Revisión local de rama temporal agente/s6-refactor-almacenamiento.
+Diff completo leído antes de incorporar; solo reportes/registro.py.
+Se extrajo persistencia, conservando firma, orden, mensajes, SQL parametrizado, transacción y cierre.
+Antes de incorporar: 25 pruebas y Ruff pasan, salidas 14 y 15.
+Por instrucción posterior del usuario se retiraron los commits y la rama; en ese momento el refactor se conservó local y sin confirmar.
+
+Cierre posterior autorizado: el código revisado se consolida en agente/semana6-codigo-revisado, commit 99bc731; integración 914fee7. Se repitieron revisión del diff, 25 pruebas y Ruff antes de integrar; ver evidencia 20.

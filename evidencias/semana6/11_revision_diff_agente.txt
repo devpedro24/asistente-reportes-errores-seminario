@@ -1,0 +1,8 @@
+2026-11-14. Revisión local de la rama temporal agente/s6-docstrings.
+Se leyó el diff de reportes/registro.py y demo.py antes de incorporar los cambios.
+AST sin docstrings: mismas instrucciones ejecutables; documentación y ajuste de línea.
+Antes de incorporar: 25 pruebas y Ruff pasan, salidas 09 y 10.
+Por instrucción posterior del usuario se retiraron los commits y la rama; en ese momento los archivos se conservaron sin confirmar.
+Pruebas originales intactas: f178981bbb4a4ab0622245519007a1f064850100.
+
+Cierre posterior autorizado: el código revisado se consolida en agente/semana6-codigo-revisado, commit 99bc731; integración 914fee7. Se repitieron revisión del diff, 25 pruebas y Ruff antes de integrar; ver evidencia 20.
