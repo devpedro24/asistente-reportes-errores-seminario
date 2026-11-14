@@ -1,0 +1,420 @@
+[
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 94,
+      "row": 12
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\demo.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 12
+    },
+    "message": "Line too long (93 > 88)",
+    "name": "line-too-long",
+    "noqa_row": 12,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 29
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 29
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 29,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 32
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 32
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 32,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 50
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 50
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 50,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 51
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 51
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 51,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 54
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 54
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 54,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 74
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 74
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 74,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 75
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 75
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 75,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 84
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 84
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 84,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 85
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 85
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 85,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 86
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 86
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 86,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 99
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 99
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 99,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 102
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 102
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 102,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 117
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 117
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 117,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 132
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 132
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 132,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 149
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 149
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 149,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 165
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 165
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 165,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 180
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 180
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 180,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 193
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 193
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 193,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 194
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 194
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 194,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 195
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 195
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 195,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  },
+  {
+    "cell": null,
+    "code": "S101",
+    "end_location": {
+      "column": 11,
+      "row": 210
+    },
+    "filename": "C:\\Users\\Pedro\\Desktop\\UNIVERSIDAD\\SEMESTRE 2026 II\\SEMINARIO\\asistente-reportes-errores-seminario\\tests\\test_registro.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 210
+    },
+    "message": "Use of `assert` detected",
+    "name": "assert",
+    "noqa_row": 210,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/assert"
+  }
+]
